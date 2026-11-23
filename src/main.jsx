@@ -19,6 +19,8 @@ function App() {
   const [selected, setSelected] = useState(null);
   const [selectedSize, setSelectedSize] = useState('M');
   const [selectedColor, setSelectedColor] = useState(null);
+  const [productQty, setProductQty] = useState(1);
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [customOpen, setCustomOpen] = useState(false);
@@ -44,7 +46,7 @@ function App() {
       if (found) return prev.map(x => x.key === key ? { ...x, qty: x.qty + 1 } : x);
       return [...prev, { key, ...product, qty: 1, size: options.size || 'OS', color: options.color || product.color }];
     });
-    setSelected(null); setCartOpen(true);
+    setSelected(null); setProductQty(1); setCartOpen(true);
   };
   const changeQty = (key, delta) => setCart(prev => prev.map(item => item.key === key ? { ...item, qty: item.qty + delta } : item).filter(item => item.qty > 0));
   const scrollRail = direction => railRef.current?.scrollBy({ left: direction * 430, behavior: 'smooth' });
@@ -67,7 +69,7 @@ function App() {
     <main>
       <section className="rail-hero">
         <div className="rail-hero-top"><p className="eyebrow"><span className="dot"/> STAN CREATIVES / CUSTOM MERCH STUDIO</p><div className="rail-hero-heading"><h1>Wear your<br/><em>own story.</em></h1><p>Find a piece. Make it yours.<br/>Custom tees, hoodies, totes and more.</p></div><div className="rail-hero-controls"><span>01 — COLLECTION RAIL</span><span>DRAG TO EXPLORE ↔</span></div></div>
-        <div className="rail-showcase"><div className="rail-line"></div><div className="product-rail rail-products" ref={railRef}>{filtered.map(p=><article className="product-card rail-card" key={p.id}><div className="hanger"><span></span></div><button className="product-image rail-product-image" onClick={()=>{setSelected(p);setSelectedSize('M');setSelectedColor(p.color)}}><img src={p.image} alt={p.name}/><span className="product-tag">{p.tag}</span><span className="quick-view">VIEW PIECE <ArrowUpRight size={14}/></span></button><div className="product-meta"><div><h3>{p.name}</h3><p>{p.type}</p></div><strong>{money(p.price,currency)}</strong></div><div className="product-colors">{p.colors.map((color,j)=><i key={j} style={{background:color}}/>)}</div></article>)}</div><button className="rail-arrow left" onClick={()=>scrollRail(-1)} aria-label="Previous pieces"><ChevronLeft/></button><button className="rail-arrow right" onClick={()=>scrollRail(1)} aria-label="Next pieces"><ChevronRight/></button></div>
+        <div className="rail-showcase"><div className="rail-line"></div><div className="product-rail rail-products" ref={railRef}>{filtered.map(p=><article className="product-card rail-card" key={p.id}><div className="hanger"><span></span></div><button className="product-image rail-product-image" onClick={()=>{setSelected(p);setSelectedSize('M');setSelectedColor(p.colors[0]);setProductQty(1);setSizeGuideOpen(false)}}><img src={p.image} alt={p.name}/><span className="product-tag">{p.tag}</span><span className="quick-view">VIEW PIECE <ArrowUpRight size={14}/></span></button><div className="product-meta"><div><h3>{p.name}</h3><p>{p.type}</p></div><strong>{money(p.price,currency)}</strong></div><div className="product-colors">{p.colors.map((color,j)=><i key={j} style={{background:color}}/>)}</div></article>)}</div><button className="rail-arrow left" onClick={()=>scrollRail(-1)} aria-label="Previous pieces"><ChevronLeft/></button><button className="rail-arrow right" onClick={()=>scrollRail(1)} aria-label="Next pieces"><ChevronRight/></button></div>
         <div className="rail-hero-bottom"><button className="button button-dark" onClick={()=>setCustomOpen(true)}>CREATE YOUR OWN <Sparkles size={16}/></button><p>ONE PIECE OR A WHOLE COLLECTION.<br/>YOUR IDEA, OUR STUDIO.</p><div className="rail-pagination"><span>01</span><i></i><span>06</span></div></div>
       </section>
       <section className="marquee" aria-label="Brand message"><div>DESIGN IT YOUR WAY <span>✳</span> MAKE IT PERSONAL <span>✳</span> WEAR IT YOUR WAY <span>✳</span> DESIGN IT YOUR WAY <span>✳</span></div></section>
@@ -75,17 +77,17 @@ function App() {
       <section className="product-category-rails" id="shop">
         <div className="category-rail-section">
           <div className="category-rail-heading"><div><p className="eyebrow">01 / THE TEE RAIL</p><h2>T-shirts <em>on the rail.</em></h2></div><p>Everyday pieces. Your design.<br/>Choose one and make it personal.</p></div>
-          <div className="category-rail-track" id="tees-rail">{products.filter(p=>p.type==='T-Shirts').map(p=><article className="category-product" key={p.id}><div className="hanger"><span/></div><button className="category-product-image" onClick={()=>{setSelected(p);setSelectedSize('M');setSelectedColor(p.color)}}><img src={p.image} alt={p.name}/><span className="quick-view">VIEW PIECE <ArrowUpRight size={14}/></span></button><div className="category-product-meta"><div><h3>{p.name}</h3><p>{p.tag}</p></div><strong>{money(p.price,currency)}</strong></div></article>)}</div>
+          <div className="category-rail-track" id="tees-rail">{products.filter(p=>p.type==='T-Shirts').map(p=><article className="category-product" key={p.id}><div className="hanger"><span/></div><button className="category-product-image" onClick={()=>{setSelected(p);setSelectedSize('M');setSelectedColor(p.colors[0]);setProductQty(1);setSizeGuideOpen(false)}}><img src={p.image} alt={p.name}/><span className="quick-view">VIEW PIECE <ArrowUpRight size={14}/></span></button><div className="category-product-meta"><div><h3>{p.name}</h3><p>{p.tag}</p></div><strong>{money(p.price,currency)}</strong></div></article>)}</div>
           <div className="category-rail-controls"><span>TEE COLLECTION</span><div><button onClick={()=>document.getElementById('tees-rail')?.scrollBy({left:-360,behavior:'smooth'})} aria-label="Scroll tees left"><ChevronLeft/></button><button onClick={()=>document.getElementById('tees-rail')?.scrollBy({left:360,behavior:'smooth'})} aria-label="Scroll tees right"><ChevronRight/></button></div></div>
         </div>
         <div className="category-rail-section">
           <div className="category-rail-heading"><div><p className="eyebrow">02 / THE LAYER RAIL</p><h2>Layers <em>to live in.</em></h2></div><p>Soft, relaxed, and ready<br/>for a personal touch.</p></div>
-          <div className="category-rail-track" id="layers-rail">{products.filter(p=>['Hoodies','Sweatshirts'].includes(p.type)).map(p=><article className="category-product" key={p.id}><div className="hanger"><span/></div><button className="category-product-image" onClick={()=>{setSelected(p);setSelectedSize('M');setSelectedColor(p.color)}}><img src={p.image} alt={p.name}/><span className="quick-view">VIEW PIECE <ArrowUpRight size={14}/></span></button><div className="category-product-meta"><div><h3>{p.name}</h3><p>{p.tag}</p></div><strong>{money(p.price,currency)}</strong></div></article>)}</div>
+          <div className="category-rail-track" id="layers-rail">{products.filter(p=>['Hoodies','Sweatshirts'].includes(p.type)).map(p=><article className="category-product" key={p.id}><div className="hanger"><span/></div><button className="category-product-image" onClick={()=>{setSelected(p);setSelectedSize('M');setSelectedColor(p.colors[0]);setProductQty(1);setSizeGuideOpen(false)}}><img src={p.image} alt={p.name}/><span className="quick-view">VIEW PIECE <ArrowUpRight size={14}/></span></button><div className="category-product-meta"><div><h3>{p.name}</h3><p>{p.tag}</p></div><strong>{money(p.price,currency)}</strong></div></article>)}</div>
           <div className="category-rail-controls"><span>HOODIES & SWEATSHIRTS</span><div><button onClick={()=>document.getElementById('layers-rail')?.scrollBy({left:-360,behavior:'smooth'})} aria-label="Scroll layers left"><ChevronLeft/></button><button onClick={()=>document.getElementById('layers-rail')?.scrollBy({left:360,behavior:'smooth'})} aria-label="Scroll layers right"><ChevronRight/></button></div></div>
         </div>
         <div className="category-rail-section">
           <div className="category-rail-heading"><div><p className="eyebrow">03 / THE TOTE RAIL</p><h2>Totes <em>for everywhere.</em></h2></div><p>Carry your ideas with you.<br/>A canvas for your creativity.</p></div>
-          <div className="category-rail-track" id="totes-rail">{products.filter(p=>p.type==='Accessories').map(p=><article className="category-product" key={p.id}><div className="hanger"><span/></div><button className="category-product-image tote-product-image" onClick={()=>{setSelected(p);setSelectedSize('M');setSelectedColor(p.color)}}><img src={p.image} alt={p.name}/><span className="quick-view">VIEW PIECE <ArrowUpRight size={14}/></span></button><div className="category-product-meta"><div><h3>{p.name}</h3><p>{p.tag}</p></div><strong>{money(p.price,currency)}</strong></div></article>)}</div>
+          <div className="category-rail-track" id="totes-rail">{products.filter(p=>p.type==='Accessories').map(p=><article className="category-product" key={p.id}><div className="hanger"><span/></div><button className="category-product-image tote-product-image" onClick={()=>{setSelected(p);setSelectedSize('M');setSelectedColor(p.colors[0]);setProductQty(1);setSizeGuideOpen(false)}}><img src={p.image} alt={p.name}/><span className="quick-view">VIEW PIECE <ArrowUpRight size={14}/></span></button><div className="category-product-meta"><div><h3>{p.name}</h3><p>{p.tag}</p></div><strong>{money(p.price,currency)}</strong></div></article>)}</div>
           <div className="category-rail-controls"><span>TOTE COLLECTION</span><div><button onClick={()=>document.getElementById('totes-rail')?.scrollBy({left:-360,behavior:'smooth'})} aria-label="Scroll totes left"><ChevronLeft/></button><button onClick={()=>document.getElementById('totes-rail')?.scrollBy({left:360,behavior:'smooth'})} aria-label="Scroll totes right"><ChevronRight/></button></div></div>
         </div>
       </section>
@@ -103,27 +105,21 @@ function App() {
       <div className="overlay" onClick={() => setSelected(null)}>
         <div className="modal product-modal" onClick={(e) => e.stopPropagation()}>
           <button className="close-btn" onClick={() => setSelected(null)}><X /></button>
-          <img src={selected.image} alt={selected.name} />
-          <div className="modal-info">
-            <p className="eyebrow">{selected.tag}</p>
+          <div className="product-modal-image-wrap"><img className="product-modal-image" src={selected.image} alt={selected.name}/><span className="product-modal-tag">{selected.tag}</span><div className="product-modal-image-caption">STAN CREATIVES / PRODUCT NO. {String(selected.id).padStart(3,'0')}</div></div>
+          <div className="modal-info product-modal-info">
+            <p className="eyebrow">{selected.type.toUpperCase()} / MADE TO PERSONALIZE</p>
             <h2>{selected.name}</h2>
-            <strong>{money(selected.price, currency)}</strong>
-            <p>{selected.desc}</p>
-            <label>SIZE</label>
-            <div className="size-options">
-              {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
-                <button key={size} className={'size-option '+(selectedSize===size?'chosen':'')} onClick={() => setSelectedSize(size)}>{size}</button>
-              ))}
-            </div>
-            <label>COLOUR</label>
-            <div className="swatches">
-              {selected.colors.map((color) => (
-                <button key={color} style={{ background: color }} aria-label="Choose colour" onClick={() => setSelectedColor(color)} className={selectedColor===color?'chosen':''} />
-              ))}
-            </div>
-            <button className="button button-dark full" onClick={() => { addToCart(selected, { size: selectedSize, color: selectedColor || selected.color }); }}>
-              ADD TO BAG — {money(selected.price, currency)} <ShoppingBag size={16} />
-            </button>
+            <strong className="product-modal-price">{money(selected.price, currency)}</strong>
+            <p className="product-modal-description">{selected.desc}</p>
+            <div className="product-detail-pills"><span>DESIGNED FOR EVERYDAY</span><span>PERSONALIZE IT</span></div>
+            <div className="product-option-head"><label>SIZE</label><button type="button" className="size-guide-link" onClick={()=>setSizeGuideOpen(!sizeGuideOpen)}>SIZE GUIDE +</button></div>
+            <div className="size-options">{['S', 'M', 'L', 'XL', 'XXL'].map(size=><button key={size} className={'size-option '+(selectedSize===size?'chosen':'')} onClick={()=>setSelectedSize(size)}>{size}</button>)}</div>
+            {sizeGuideOpen && <div className="size-guide-panel"><strong>SIZE GUIDE (APPROX.)</strong><table><thead><tr><th>SIZE</th><th>CHEST</th><th>LENGTH</th></tr></thead><tbody>{[['S','36–38','26'],['M','38–40','27'],['L','40–42','28'],['XL','42–44','29'],['XXL','44–46','30']].map(row=><tr key={row[0]}>{row.map(cell=><td key={cell}>{cell}</td>)}</tr>)}</tbody></table><small>Measurements are approximate and may vary by garment.</small></div>}
+            <label className="product-color-label">COLOUR <span>{selectedColor || selected.color}</span></label>
+            <div className="swatches product-modal-swatches">{selected.colors.map(color=><button key={color} style={{background:color}} aria-label={'Choose '+color} onClick={()=>setSelectedColor(color)} className={selectedColor===color?'chosen':''}/>)}</div>
+            <div className="product-quantity"><label>QUANTITY</label><div><button onClick={()=>setProductQty(Math.max(1,productQty-1))} aria-label="Decrease quantity">−</button><span>{productQty}</span><button onClick={()=>setProductQty(productQty+1)} aria-label="Increase quantity">+</button></div></div>
+            <button className="button button-dark full product-add-button" onClick={()=>{addToCart(selected,{size:selectedSize,color:selectedColor||selected.color});for(let i=1;i<productQty;i++)addToCart(selected,{size:selectedSize,color:selectedColor||selected.color});}}>ADD TO BAG — {money(selected.price*productQty,currency)} <ShoppingBag size={16}/></button>
+            <p className="product-modal-footnote">Need a different print or custom artwork? <button onClick={()=>{setSelected(null);setCustomOpen(true)}}>Start a custom order ↗</button></p>
           </div>
         </div>
       </div>
