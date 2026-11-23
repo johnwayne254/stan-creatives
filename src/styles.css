@@ -141,3 +141,37 @@
 .drop-section .section-heading h2{font-size:clamp(42px,5vw,68px)}
 @media(max-width:900px){.category-rail-track{grid-auto-columns:40vw}.category-product-image{height:350px}.drop-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:640px){.product-category-rails{padding:34px 5% 45px}.category-rail-section{margin-bottom:48px}.category-rail-heading{display:block}.category-rail-heading h2{font-size:42px}.category-rail-heading>p{margin-top:16px}.category-rail-track{grid-auto-columns:78vw;gap:16px;padding-left:2px}.category-product-image{height:380px}.drop-grid{grid-template-columns:1fr;gap:14px}.drop-tile{aspect-ratio:4/3}.drop-tile>div{bottom:20px;left:20px}.drop-section{padding-top:58px;padding-bottom:60px}}
+
+/* PRODUCT DETAIL UPGRADE */
+.product-modal{width:min(900px,100%);grid-template-columns:1.04fr .96fr;max-height:min(92vh,900px);overflow:auto}
+.product-modal-image-wrap{position:relative;min-height:540px;background:#e8e3db;overflow:hidden}
+.product-modal-image{width:100%;height:100%;min-height:540px;object-fit:cover;display:block}
+.product-modal-tag{position:absolute;top:18px;left:18px;background:var(--paper);padding:9px 11px;font:8px 'DM Mono',monospace;letter-spacing:.12em}
+.product-modal-image-caption{position:absolute;bottom:16px;left:18px;color:white;font:8px 'DM Mono',monospace;letter-spacing:.12em;text-shadow:0 1px 5px #0008}
+.product-modal-info{padding:48px 34px 30px}
+.product-modal-info h2{font-size:clamp(27px,3vw,38px);line-height:.98;margin:0 0 12px;letter-spacing:-.07em}
+.product-modal-price{font-size:15px!important}
+.product-modal-description{font-size:12px;line-height:1.7;color:var(--muted);margin:17px 0 18px!important}
+.product-detail-pills{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 23px}
+.product-detail-pills span{border:1px solid var(--line);padding:6px 8px;font:7px 'DM Mono',monospace;letter-spacing:.08em;color:#777}
+.product-option-head{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+.product-option-head label{margin:0!important}
+.size-guide-link{border:0;background:none;color:#777;font:8px 'DM Mono',monospace;text-decoration:underline;text-underline-offset:3px}
+.size-guide-panel{background:#ebe7df;padding:13px;margin:12px 0 4px}
+.size-guide-panel>strong{font:8px 'DM Mono',monospace;letter-spacing:.1em}
+.size-guide-panel table{width:100%;border-collapse:collapse;margin:10px 0}
+.size-guide-panel th,.size-guide-panel td{text-align:left;border-bottom:1px solid #d3cec4;padding:6px 4px;font:8px 'DM Mono',monospace}
+.size-guide-panel small{font-size:8px;color:#777}
+.product-modal-info .product-color-label{display:flex;justify-content:space-between;margin-top:20px}
+.product-color-label span{color:#777}
+.product-modal-swatches{margin-top:9px}
+.product-modal-swatches button{width:27px;height:27px}
+.product-quantity{display:flex;align-items:center;justify-content:space-between;margin-top:23px}
+.product-quantity>label{margin:0!important}
+.product-quantity>div{display:flex;align-items:center;border:1px solid var(--line);height:35px}
+.product-quantity button{width:35px;height:33px;border:0;background:transparent;font-size:15px}
+.product-quantity span{min-width:30px;text-align:center;font:10px 'DM Mono',monospace}
+.product-add-button{margin-top:18px}
+.product-modal-footnote{font-size:9px!important;line-height:1.6!important;margin:15px 0 0!important}
+.product-modal-footnote button{border:0;background:none;padding:0;text-decoration:underline;color:var(--ink);font-size:inherit}
+@media(max-width:720px){.product-modal{display:block;width:min(520px,100%);max-height:92vh}.product-modal-image-wrap{min-height:300px;height:42vh}.product-modal-image{min-height:300px;height:100%}.product-modal-info{padding:28px 22px 25px}.product-modal-info h2{font-size:30px}.size-guide-panel th,.size-guide-panel td{font-size:7px}}
