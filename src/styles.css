@@ -194,3 +194,22 @@
 .personalize-upload input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
 .personalize-fields>small{display:block;font-size:8px;line-height:1.5;color:var(--muted);margin-top:8px}
 .cart-personalization{display:block;color:var(--muted);font-size:9px;line-height:1.5;margin:5px 0}
+
+/* Custom Studio milestone 2: live design placement and uploaded artwork preview */
+.custom-preview{isolation:isolate}
+.preview-design{width:70%;display:flex;flex-direction:column;align-items:center;gap:8px}
+.preview-design span{padding:3px 5px}
+.preview-design.placement-front{top:44%;left:50%}
+.preview-design.placement-back{top:48%;left:50%}
+.preview-design.placement-left-chest{top:30%;left:66%;width:28%;font-size:clamp(10px,1.4vw,18px)}
+.preview-design.placement-full-front{top:48%;left:50%;width:78%;font-size:clamp(20px,3vw,36px)}
+.preview-artwork{position:relative!important;inset:auto!important;width:min(42%,160px)!important;height:auto!important;max-height:140px;object-fit:contain!important;filter:none!important;z-index:3;mix-blend-mode:multiply}
+.placement-left-chest .preview-artwork{width:min(90%,95px)!important;max-height:80px}
+.placement-full-front .preview-artwork{width:min(65%,210px)!important;max-height:180px}
+.clear-artwork{border:0;background:transparent;text-decoration:underline;font:8px 'DM Mono',monospace;padding:7px 0;color:var(--muted)}
+.quote-contact-fields{border-top:1px solid var(--line);margin-top:18px;padding-top:7px}
+.quote-contact-fields .eyebrow{margin:10px 0}
+.quote-contact-fields label{margin:12px 0 8px!important}
+.custom-success{max-width:450px}
+.custom-success h2{margin:14px 0}
+.custom-success p:not(.eyebrow){font-size:12px;line-height:1.7;color:var(--muted)}
