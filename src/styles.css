@@ -175,3 +175,12 @@
 .product-modal-footnote{font-size:9px!important;line-height:1.6!important;margin:15px 0 0!important}
 .product-modal-footnote button{border:0;background:none;padding:0;text-decoration:underline;color:var(--ink);font-size:inherit}
 @media(max-width:720px){.product-modal{display:block;width:min(520px,100%);max-height:92vh}.product-modal-image-wrap{min-height:300px;height:42vh}.product-modal-image{min-height:300px;height:100%}.product-modal-info{padding:28px 22px 25px}.product-modal-info h2{font-size:30px}.size-guide-panel th,.size-guide-panel td{font-size:7px}}
+
+/* COLLECTION FORMAT GRID — balanced catalogue entry points */
+.drop-grid{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto;gap:14px}
+.drop-tile{aspect-ratio:4/5;min-height:0}
+.drop-tile.tall{grid-row:auto}
+.drop-tile>div{bottom:20px;left:20px;right:16px}
+.drop-tile h3{font-size:clamp(16px,1.7vw,22px)}
+@media(max-width:900px){.drop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.drop-tile{aspect-ratio:4/5}}
+@media(max-width:640px){.drop-grid{grid-template-columns:1fr 1fr;gap:10px}.drop-tile{aspect-ratio:3/4}.drop-tile>div{bottom:14px;left:14px}.drop-tile h3{font-size:17px}}
