@@ -83,7 +83,35 @@ function App() {
     </main>
     <footer className="footer"><a href="#" className="wordmark">STAN<span>CREATIVES</span></a><p>YOUR IDEAS. YOUR STYLE. YOUR PIECE.</p><div><a href="#shop">SHOP</a><a href="#custom">CUSTOM ORDERS</a><a href="#story">ABOUT</a><a href="mailto:hello@stancreatives.com">CONTACT</a></div><small>© 2026 STAN CREATIVES. MADE WITH INTENTION.</small></footer>
 
-    {selected && <div className="overlay" onClick={() => setSelected(null)}><div className="modal product-modal" onClick={e => e.stopPropagation()}><button className="close-btn" onClick={() => setSelected(null)}><X/></button><img src={selected.image} alt={selected.name}/><div className="modal-info"><p className="eyebrow">{selected.tag}</p><h2>{selected.name}</h2><strong>{money(selected.price,currency)}</strong><p>{selected.desc}</p><label>SIZE</label><div className="size-options">{['S','M','L','XL','XXL'].map(s=><button key={s} className="size-option" onClick={e => e.currentTarget.classList.toggle('chosen')}>{s}</button>)}</div><label>COLOUR</label><div className="swatches">{selected.colors.map((c,i)=><button key={c} style={{background:c}} aria-label={'Colour '+(i+1)} onClick={e => {e.currentTarget.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('chosen'));e.currentTarget.classList.add('chosen')}}/></div><button className="button button-dark full" onClick={() => {const size=document.querySelector('.size-option.chosen')?.textContent || 'M';addToCart(selected,{size})}}>ADD TO BAG — {money(selected.price,currency)} <ShoppingBag size={16}/></button></div></div></div>}
+    {selected && (
+      <div className="overlay" onClick={() => setSelected(null)}>
+        <div className="modal product-modal" onClick={(e) => e.stopPropagation()}>
+          <button className="close-btn" onClick={() => setSelected(null)}><X /></button>
+          <img src={selected.image} alt={selected.name} />
+          <div className="modal-info">
+            <p className="eyebrow">{selected.tag}</p>
+            <h2>{selected.name}</h2>
+            <strong>{money(selected.price, currency)}</strong>
+            <p>{selected.desc}</p>
+            <label>SIZE</label>
+            <div className="size-options">
+              {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
+                <button key={size} className="size-option" onClick={(e) => e.currentTarget.classList.toggle('chosen')}>{size}</button>
+              ))}
+            </div>
+            <label>COLOUR</label>
+            <div className="swatches">
+              {selected.colors.map((color) => (
+                <button key={color} style={{ background: color }} aria-label="Choose colour" onClick={(e) => { e.currentTarget.parentElement.querySelectorAll('button').forEach((button) => button.classList.remove('chosen')); e.currentTarget.classList.add('chosen'); }} />
+              ))}
+            </div>
+            <button className="button button-dark full" onClick={() => { const size = document.querySelector('.size-option.chosen')?.textContent || 'M'; addToCart(selected, { size }); }}>
+              ADD TO BAG — {money(selected.price, currency)} <ShoppingBag size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
 
     {cartOpen && <div className="overlay" onClick={() => setCartOpen(false)}><aside className="cart-drawer" onClick={e => e.stopPropagation()}><div className="drawer-head"><h2>YOUR BAG <span>({cartCount})</span></h2><button className="close-btn" onClick={() => setCartOpen(false)}><X/></button></div>{cart.length === 0 ? <div className="empty-cart"><ShoppingBag size={32}/><h3>Your bag is waiting.</h3><p>Find something that feels like you.</p><button className="button button-dark" onClick={() => setCartOpen(false)}>KEEP SHOPPING</button></div> : <><div className="cart-items">{cart.map(item=><div className="cart-item" key={item.key}><img src={item.image} alt={item.name}/><div><h3>{item.name}</h3><p>{item.color} · {item.size}</p><strong>{money(item.price,currency)}</strong><div className="qty"><button onClick={()=>changeQty(item.key,-1)}>−</button><span>{item.qty}</span><button onClick={()=>changeQty(item.key,1)}>+</button></div></div></div>)}</div><div className="cart-total"><span>SUBTOTAL</span><strong>{money(cartTotal,currency)}</strong><small>Shipping and taxes are calculated at checkout.</small><button className="button button-dark full" onClick={()=>alert('Checkout is not connected yet. We will add secure payments before launch.')}>CONTINUE TO CHECKOUT <ArrowUpRight size={16}/></button></div></>}</aside></div>}
 
