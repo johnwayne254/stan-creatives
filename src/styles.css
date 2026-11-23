@@ -213,3 +213,23 @@
 .custom-success{max-width:450px}
 .custom-success h2{margin:14px 0}
 .custom-success p:not(.eyebrow){font-size:12px;line-height:1.7;color:var(--muted)}
+
+/* Measured garment mockup customizer */
+.mockup-preview{background:#ece8e0!important;padding:14px;display:flex;align-items:center;justify-content:center;min-height:520px;position:relative}
+.garment-mockup{width:100%;height:100%;max-height:520px;display:block;overflow:visible}
+.mockup-design{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:Arial,sans-serif;font-weight:800;letter-spacing:.04em;line-height:1.1;word-break:break-word;overflow:visible}
+.mockup-design span{max-width:100%;text-shadow:0 0 1px rgba(0,0,0,.08)}
+.mockup-design img{display:block;max-width:100%;max-height:100px;object-fit:contain;mix-blend-mode:multiply}
+.mockup-design.placement-left-chest{transform:translate(-50%,-50%);font-size:clamp(7px,1.2vw,13px)}
+.mockup-design.placement-full-front{font-size:clamp(14px,2vw,26px)}
+.mockup-design.placement-back{transform:translate(-50%,-50%)}
+.mockup-guides text{font-family:monospace;font-size:9px;letter-spacing:1px;fill:#3c68a5}
+.mockup-guides rect{stroke-width:1.2}
+.print-measure-controls{border:1px solid var(--line);padding:12px;margin:12px 0}
+.print-measure-controls .eyebrow{margin:0 0 12px}
+.print-measure-controls label{display:block;margin:12px 0;font-size:9px}
+.print-measure-controls label span{float:right;font-family:monospace;font-size:10px}
+.print-measure-controls input[type=range]{display:block;width:100%;margin-top:8px;accent-color:#171717}
+.print-measure-controls small{display:block;font-size:8px;line-height:1.5;color:var(--muted);margin-top:8px}
+.guide-toggle{border:1px solid var(--line);background:transparent;padding:8px;font:8px 'DM Mono',monospace;letter-spacing:.08em;width:100%;margin:5px 0}
+@media(max-width:700px){.mockup-preview{min-height:360px}.garment-mockup{max-height:380px}.print-measure-controls{padding:10px}}
