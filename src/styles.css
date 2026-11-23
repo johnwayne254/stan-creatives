@@ -184,3 +184,13 @@
 .drop-tile h3{font-size:clamp(16px,1.7vw,22px)}
 @media(max-width:900px){.drop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.drop-tile{aspect-ratio:4/5}}
 @media(max-width:640px){.drop-grid{grid-template-columns:1fr 1fr;gap:10px}.drop-tile{aspect-ratio:3/4}.drop-tile>div{bottom:14px;left:14px}.drop-tile h3{font-size:17px}}
+
+.product-personalize{margin-top:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.personalize-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;border:0;background:transparent;padding:14px 0;font:9px 'DM Mono',monospace;letter-spacing:.1em;color:var(--ink)}
+.personalize-fields{padding:0 0 14px}
+.personalize-fields label{margin:14px 0 8px}
+.personalize-fields input:not([type=file]),.personalize-fields select{display:block;width:100%;border:1px solid var(--line);background:transparent;padding:10px;margin-top:7px;font-size:10px;outline-color:#a7c85a}
+.personalize-upload{border:1px dashed #aaa;padding:12px;display:flex;align-items:center;gap:9px;position:relative;font-size:10px;color:var(--muted)}
+.personalize-upload input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.personalize-fields>small{display:block;font-size:8px;line-height:1.5;color:var(--muted);margin-top:8px}
+.cart-personalization{display:block;color:var(--muted);font-size:9px;line-height:1.5;margin:5px 0}
