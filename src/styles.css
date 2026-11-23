@@ -100,3 +100,44 @@
 .rail-about-strip .button{white-space:nowrap}
 @media(max-width:900px){.rail-products{grid-auto-columns:clamp(220px,32vw,280px);gap:24px}.rail-hero-heading{align-items:flex-start}.rail-about-strip{grid-template-columns:1fr 1fr}.rail-about-strip .button{grid-column:2}}
 @media(max-width:640px){.rail-hero{padding:38px 5% 24px}.rail-hero-heading{display:block}.rail-hero-heading h1{font-size:clamp(45px,13vw,68px)}.rail-hero-heading>p{margin-top:18px;font-size:12px}.rail-hero-controls{margin-top:28px;font-size:8px}.rail-products{grid-auto-columns:78vw;gap:18px;padding:18px 8px 14px}.rail-product-image{height:370px}.rail-hero-bottom{align-items:flex-start;flex-wrap:wrap;margin-top:16px}.rail-hero-bottom>p{font-size:8px}.rail-pagination{margin-left:auto}.rail-showcase .rail-arrow{width:32px;height:32px}.rail-showcase .rail-arrow.left{left:5px}.rail-showcase .rail-arrow.right{right:5px}.rail-about-strip{display:block;padding:50px 5%}.rail-about-strip>p{margin:24px 0}.rail-about-strip .button{margin-top:10px}}
+
+/* PRODUCT-SPECIFIC SHOWROOM RAILS */
+.product-category-rails{background:#fbfaf8;color:#171715;padding:38px 5.6% 70px}
+.category-rail-section{max-width:1440px;margin:0 auto 72px}
+.category-rail-heading{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:24px}
+.category-rail-heading .eyebrow{margin-bottom:14px}
+.category-rail-heading h2{font-size:clamp(38px,4.5vw,62px);line-height:.95;letter-spacing:-.075em;font-weight:500;margin:0}
+.category-rail-heading h2 em{font-family:'Playfair Display',serif;font-weight:500}
+.category-rail-heading>p{font-size:12px;line-height:1.65;color:#777;margin:0 0 4px}
+.category-rail-track{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(250px,24vw,330px);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:18px 6px 20px}
+.category-rail-track::-webkit-scrollbar{display:none}
+.category-product{scroll-snap-align:start;min-width:0}
+.category-product .hanger{height:35px}
+.category-product-image{position:relative;display:block;width:100%;height:390px;background:#eeeae3;border:0;padding:0;overflow:hidden;cursor:pointer}
+.category-product-image img{width:100%;height:100%;object-fit:cover;transition:transform .55s;filter:saturate(.72)}
+.category-product-image:hover img{transform:scale(1.035)}
+.category-product-image .quick-view{opacity:1;transform:none;bottom:14px;right:14px;background:#171715;color:#fff;padding:9px 12px;font:9px 'DM Mono',monospace;letter-spacing:.1em;display:flex;align-items:center;gap:6px}
+.category-product-meta{display:flex;justify-content:space-between;align-items:start;gap:14px;padding-top:14px}
+.category-product-meta h3{font-size:13px;font-weight:500;margin:0 0 5px}
+.category-product-meta p{font:8px 'DM Mono',monospace;letter-spacing:.12em;color:#888;margin:0}
+.category-product-meta strong{font:10px 'DM Mono',monospace;white-space:nowrap}
+.category-rail-controls{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid #dedbd6;font:9px 'DM Mono',monospace;letter-spacing:.12em;color:#777}
+.category-rail-controls>div{display:flex;gap:8px}
+.category-rail-controls button{width:34px;height:34px;border:1px solid #dedbd6;background:transparent;display:grid;place-items:center;cursor:pointer;transition:.2s}
+.category-rail-controls button:hover{background:#171715;color:#fff;border-color:#171715}
+.category-rail-controls svg{width:17px;height:17px}
+.tote-product-image img{object-position:center 52%;object-fit:cover}
+.drop-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto;gap:18px}
+.drop-tile{position:relative;aspect-ratio:4/5;min-height:0;overflow:hidden}
+.drop-tile.tall{grid-row:auto}
+.drop-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s;filter:saturate(.65)}
+.drop-tile:hover img{transform:scale(1.04)}
+.drop-tile:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.62),transparent 55%)}
+.drop-tile>div{z-index:1;bottom:28px;left:28px;right:28px}
+.drop-tile span{font:9px 'DM Mono',monospace;letter-spacing:.15em}
+.drop-tile h3{font-size:clamp(20px,2vw,28px);line-height:1.1;margin-top:10px;max-width:90%}
+.drop-section{padding-top:80px;padding-bottom:85px}
+.drop-section .section-heading{margin-bottom:28px}
+.drop-section .section-heading h2{font-size:clamp(42px,5vw,68px)}
+@media(max-width:900px){.category-rail-track{grid-auto-columns:40vw}.category-product-image{height:350px}.drop-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.product-category-rails{padding:34px 5% 45px}.category-rail-section{margin-bottom:48px}.category-rail-heading{display:block}.category-rail-heading h2{font-size:42px}.category-rail-heading>p{margin-top:16px}.category-rail-track{grid-auto-columns:78vw;gap:16px;padding-left:2px}.category-product-image{height:380px}.drop-grid{grid-template-columns:1fr;gap:14px}.drop-tile{aspect-ratio:4/3}.drop-tile>div{bottom:20px;left:20px}.drop-section{padding-top:58px;padding-bottom:60px}}
