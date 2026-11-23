@@ -17,6 +17,8 @@ function App() {
   const [currency, setCurrency] = useState('KES');
   const [activeCategory, setActiveCategory] = useState('All');
   const [selected, setSelected] = useState(null);
+  const [selectedSize, setSelectedSize] = useState('M');
+  const [selectedColor, setSelectedColor] = useState(null);
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [customOpen, setCustomOpen] = useState(false);
@@ -74,7 +76,7 @@ function App() {
       <section className="section shop-section" id="shop">
         <div className="section-heading"><div><p className="eyebrow">01 / THE COLLECTION</p><h2>Choose your <em>piece.</em></h2></div><p className="section-intro">T-shirts, hoodies, totes and more—ready for your ideas.</p></div>
         <div className="category-row">{categories.map(cat => <button key={cat} className={activeCategory === cat ? 'category active' : 'category'} onClick={() => setActiveCategory(cat)}>{cat}</button>)}</div>
-        <div className="product-rail-wrap"><button className="rail-arrow left" onClick={() => scrollRail(-1)} aria-label="Scroll products left"><ChevronLeft/></button><div className="product-rail" ref={railRef}>{filtered.map((p,i) => <article className="product-card" key={p.id}><button className="product-image" onClick={() => setSelected(p)}><img src={p.image} alt={p.name}/><span className="product-tag">{p.tag}</span><span className="quick-view">QUICK VIEW <ArrowUpRight size={14}/></span></button><div className="product-meta"><div><h3>{p.name}</h3><p>{p.type}</p></div><strong>{money(p.price,currency)}</strong></div><div className="product-colors">{p.colors.map((c,j)=><i key={j} style={{background:c}}/>)}</div></article>)}</div><button className="rail-arrow right" onClick={() => scrollRail(1)} aria-label="Scroll products right"><ChevronRight/></button></div>
+        <div className="product-rail-wrap"><button className="rail-arrow left" onClick={() => scrollRail(-1)} aria-label="Scroll products left"><ChevronLeft/></button><div className="product-rail" ref={railRef}>{filtered.map((p,i) => <article className="product-card" key={p.id}><button className="product-image" onClick={() => { setSelected(p); setSelectedSize('M'); setSelectedColor(p.color); }}><img src={p.image} alt={p.name}/><span className="product-tag">{p.tag}</span><span className="quick-view">QUICK VIEW <ArrowUpRight size={14}/></span></button><div className="product-meta"><div><h3>{p.name}</h3><p>{p.type}</p></div><strong>{money(p.price,currency)}</strong></div><div className="product-colors">{p.colors.map((c,j)=><i key={j} style={{background:c}}/>)}</div></article>)}</div><button className="rail-arrow right" onClick={() => scrollRail(1)} aria-label="Scroll products right"><ChevronRight/></button></div>
         {filtered.length === 0 && <p className="empty-state">No products match that search. Try another name.</p>}
         <div className="center-link"><a href="#drops">EXPLORE THE COLLECTION <ArrowRight size={15}/></a></div>
       </section>
@@ -102,16 +104,16 @@ function App() {
             <label>SIZE</label>
             <div className="size-options">
               {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
-                <button key={size} className="size-option" onClick={(e) => e.currentTarget.classList.toggle('chosen')}>{size}</button>
+                <button key={size} className={'size-option '+(selectedSize===size?'chosen':'')} onClick={() => setSelectedSize(size)}>{size}</button>
               ))}
             </div>
             <label>COLOUR</label>
             <div className="swatches">
               {selected.colors.map((color) => (
-                <button key={color} style={{ background: color }} aria-label="Choose colour" onClick={(e) => { e.currentTarget.parentElement.querySelectorAll('button').forEach((button) => button.classList.remove('chosen')); e.currentTarget.classList.add('chosen'); }} />
+                <button key={color} style={{ background: color }} aria-label="Choose colour" onClick={() => setSelectedColor(color)} className={selectedColor===color?'chosen':''} />
               ))}
             </div>
-            <button className="button button-dark full" onClick={() => { const size = document.querySelector('.size-option.chosen')?.textContent || 'M'; addToCart(selected, { size }); }}>
+            <button className="button button-dark full" onClick={() => { addToCart(selected, { size: selectedSize, color: selectedColor || selected.color }); }}>
               ADD TO BAG — {money(selected.price, currency)} <ShoppingBag size={16} />
             </button>
           </div>
