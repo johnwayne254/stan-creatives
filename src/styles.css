@@ -32,3 +32,24 @@
 .story-section{background:#171715}
 @media(max-width:900px){.product-rail{grid-auto-columns:calc((100% - 36px)/3)}.product-image{height:300px}}
 @media(max-width:640px){.hero{min-height:0;padding:45px 5% 50px}.hero h1{font-size:clamp(55px,15vw,82px)}.hero-art{min-height:390px}.shop-section{padding-top:65px}.product-rail{grid-auto-columns:78%}.product-image{height:390px}.drop-grid{grid-template-columns:1fr 1fr;grid-template-rows:260px 220px}}
+
+
+/* Custom product preview studio */
+.customizer-modal{width:min(960px,100%);padding:42px 38px}
+.customizer-modal h2{font-size:clamp(38px,5vw,56px);margin-bottom:12px}
+.customizer-layout{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:24px;align-items:start}
+.custom-preview{position:relative;background:#e5e0d7;min-height:480px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.custom-preview img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;filter:saturate(.62)}
+.custom-preview:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#0004,transparent 30%)}
+.preview-design{position:absolute;z-index:2;top:42%;left:50%;transform:translate(-50%,-50%);max-width:70%;text-align:center;font-size:clamp(16px,2.2vw,28px);font-weight:800;letter-spacing:.1em;line-height:1.1;text-shadow:0 1px 6px #ffffff60;mix-blend-mode:normal;word-break:break-word}
+.preview-label{position:absolute;z-index:3;bottom:16px;left:16px;color:#fff;font:8px 'DM Mono',monospace;letter-spacing:.12em}
+.customizer-layout form{min-width:0}
+.customizer-layout form label{margin-top:14px}
+.custom-swatches{margin:8px 0 4px}
+.custom-swatches button.chosen{outline:1px solid var(--ink);outline-offset:3px}
+.customizer-layout .upload-box{margin-top:8px}
+.custom-success{padding:22px 12px;text-align:center;max-width:480px;margin:auto}
+.custom-success h2{margin:12px 0 18px}
+.custom-success>p:not(.eyebrow){font-size:12px;line-height:1.7;color:var(--muted);margin-bottom:25px}
+.success-icon{width:52px;height:52px;border-radius:50%;background:var(--acid);display:grid;place-items:center;margin:0 auto 18px}
+@media(max-width:640px){.customizer-modal{padding:32px 20px}.customizer-layout{grid-template-columns:1fr;gap:20px}.custom-preview{min-height:340px}.preview-design{font-size:23px}}
