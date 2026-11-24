@@ -27,14 +27,10 @@ This is a front-end prototype. It does not yet process payments, reserve invento
 The included GitHub Actions workflow builds the Vite app and publishes `dist/` to GitHub Pages when enabled in repository settings.
 
 
-## Backend foundation (Supabase)
+## Backend foundation (Appwrite)
 
-A Supabase schema and optional client scaffold are included. This is not connected to production yet.
+The project now uses the Appwrite JavaScript SDK. Configure the public endpoint and project ID through the `VITE_APPWRITE_*` values in `.env.example` (copy to `.env.local` for local development or configure them as GitHub Actions build variables for deployment).
 
-1. Create a Supabase project.
-2. Open SQL Editor and run `supabase/schema.sql`.
-3. Copy `.env.example` to `.env.local` and set the project URL and anon key.
-4. Never place a Supabase service-role key in the browser or GitHub Pages.
-5. Before live orders, add server-side/Edge Functions for order submission, artwork uploads, payment callbacks, and admin actions. Add authentication and admin-role policies first.
+Create a database and collections using the IDs in `.env.example`: `products`, `orders`, `order_items`, `design_requests`, and `payments`. Create an `artwork` storage bucket. Configure collection attributes and permissions before connecting live forms. Use Appwrite Auth for admin login and grant admin-only permissions to management operations. Never put an Appwrite API key in frontend environment variables or browser code; privileged operations must run in a trusted server/Function environment.
 
-The database currently has tables for products, orders, order items, design requests, and payments. Row Level Security is enabled. Only active products are publicly readable; customer/order tables intentionally have no public access policies yet.
+The Appwrite client scaffold is in `src/lib/appwrite.js`. The live website is not connected to the Appwrite project until its Project ID and endpoint are configured and the database collections, bucket, and permissions are created.
