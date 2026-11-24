@@ -19,7 +19,11 @@ jobs:
         with:
           node-version: 22
       - run: npm install
-      - run: npm run build
+      - name: Build site
+        run: npm run build
+        env:
+          VITE_APPWRITE_ENDPOINT: https://fra.cloud.appwrite.io/v1
+          VITE_APPWRITE_PROJECT_ID: 6b059772002603ef9b31
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
