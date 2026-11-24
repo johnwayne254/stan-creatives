@@ -23,12 +23,46 @@ const PROJECT_ID = '6b059772002603ef9b31';
 const DATABASE_ID = 'stan_creatives';
 const BUCKET_ID = 'artwork';
 
-const rl = readline.createInterface({ input, output });
+async function readHiddenKey() {
+  if (!input.isTTY || typeof input.setRawMode !== 'function') {
+    throw new Error('Run this script in an interactive terminal, or set APPWRITE_API_KEY in the environment.');
+  }
+  output.write('Paste your NEW Appwrite API key (input hidden): ');
+  input.setRawMode(true);
+  input.resume();
+  let value = '';
+  return await new Promise((resolve, reject) => {
+    const onData = (buffer) => {
+      for (const char of buffer.toString('utf8')) {
+        if (char === '\\u0003') {
+          cleanup();
+          reject(new Error('Cancelled.'));
+          return;
+        }
+        if (char === '\\r' || char === '\\n') {
+          cleanup();
+          output.write('\\n');
+          resolve(value);
+          return;
+        }
+        if (char === '\\u007f' || char === '\\b') value = value.slice(0, -1);
+        else value += char;
+      }
+    };
+    const cleanup = () => {
+      input.off('data', onData);
+      input.setRawMode(false);
+      input.pause();
+    };
+    input.on('data', onData);
+  });
+}
+
 let apiKey = process.env.APPWRITE_API_KEY;
 if (!apiKey) {
-  apiKey = await rl.question('Paste your NEW Appwrite API key (input is visible): ');
+  try { apiKey = await readHiddenKey(); }
+  catch (error) { console.error(error.message); process.exit(1); }
 }
-rl.close();
 
 if (!apiKey?.trim()) {
   console.error('Missing APPWRITE_API_KEY. No changes were made.');
